@@ -35,13 +35,13 @@
             this.albumName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.додатиЖанрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.додатиАльбомToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.видаленняАльбомуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.видаленняВиконавцяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addGenreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeExecutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.спискиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокВиконавцівToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокЖанрівToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.executorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.genresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -104,58 +104,60 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.додатиЖанрToolStripMenuItem,
-            this.додатиАльбомToolStripMenuItem,
-            this.видаленняАльбомуToolStripMenuItem,
-            this.видаленняВиконавцяToolStripMenuItem});
+            this.addGenreToolStripMenuItem,
+            this.addAlbumToolStripMenuItem,
+            this.deleteAlbumToolStripMenuItem,
+            this.removeExecutorToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
-            // додатиЖанрToolStripMenuItem
+            // addGenreToolStripMenuItem
             // 
-            this.додатиЖанрToolStripMenuItem.Name = "додатиЖанрToolStripMenuItem";
-            this.додатиЖанрToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.додатиЖанрToolStripMenuItem.Text = "Додати жанр";
+            this.addGenreToolStripMenuItem.Name = "addGenreToolStripMenuItem";
+            this.addGenreToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.addGenreToolStripMenuItem.Text = "Додати жанр";
+            this.addGenreToolStripMenuItem.Click += new System.EventHandler(this.addGenreToolStripMenuItem_Click);
             // 
-            // додатиАльбомToolStripMenuItem
+            // addAlbumToolStripMenuItem
             // 
-            this.додатиАльбомToolStripMenuItem.Name = "додатиАльбомToolStripMenuItem";
-            this.додатиАльбомToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.додатиАльбомToolStripMenuItem.Text = "Додати альбом";
+            this.addAlbumToolStripMenuItem.Name = "addAlbumToolStripMenuItem";
+            this.addAlbumToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.addAlbumToolStripMenuItem.Text = "Додати альбом";
             // 
-            // видаленняАльбомуToolStripMenuItem
+            // deleteAlbumToolStripMenuItem
             // 
-            this.видаленняАльбомуToolStripMenuItem.Name = "видаленняАльбомуToolStripMenuItem";
-            this.видаленняАльбомуToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.видаленняАльбомуToolStripMenuItem.Text = "Видалення альбому";
+            this.deleteAlbumToolStripMenuItem.Name = "deleteAlbumToolStripMenuItem";
+            this.deleteAlbumToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteAlbumToolStripMenuItem.Text = "Видалення альбому";
             // 
-            // видаленняВиконавцяToolStripMenuItem
+            // removeExecutorToolStripMenuItem
             // 
-            this.видаленняВиконавцяToolStripMenuItem.Name = "видаленняВиконавцяToolStripMenuItem";
-            this.видаленняВиконавцяToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.видаленняВиконавцяToolStripMenuItem.Text = "Видалення виконавця";
+            this.removeExecutorToolStripMenuItem.Name = "removeExecutorToolStripMenuItem";
+            this.removeExecutorToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.removeExecutorToolStripMenuItem.Text = "Видалення виконавця";
             // 
             // спискиToolStripMenuItem
             // 
             this.спискиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.списокВиконавцівToolStripMenuItem,
-            this.списокЖанрівToolStripMenuItem});
+            this.executorsToolStripMenuItem,
+            this.genresToolStripMenuItem});
             this.спискиToolStripMenuItem.Name = "спискиToolStripMenuItem";
             this.спискиToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.спискиToolStripMenuItem.Text = "Списки";
             // 
-            // списокВиконавцівToolStripMenuItem
+            // executorsToolStripMenuItem
             // 
-            this.списокВиконавцівToolStripMenuItem.Name = "списокВиконавцівToolStripMenuItem";
-            this.списокВиконавцівToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.списокВиконавцівToolStripMenuItem.Text = "Список виконавців";
+            this.executorsToolStripMenuItem.Name = "executorsToolStripMenuItem";
+            this.executorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.executorsToolStripMenuItem.Text = "Список виконавців";
             // 
-            // списокЖанрівToolStripMenuItem
+            // genresToolStripMenuItem
             // 
-            this.списокЖанрівToolStripMenuItem.Name = "списокЖанрівToolStripMenuItem";
-            this.списокЖанрівToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.списокЖанрівToolStripMenuItem.Text = "Список жанрів";
+            this.genresToolStripMenuItem.Name = "genresToolStripMenuItem";
+            this.genresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.genresToolStripMenuItem.Text = "Список жанрів";
+            this.genresToolStripMenuItem.Click += new System.EventHandler(this.genresToolStripMenuItem_Click);
             // 
             // SongsLibrary
             // 
@@ -166,6 +168,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SongsLibrary";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Аудіо-бібліотека";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -184,13 +187,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn albumName;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem додатиЖанрToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem додатиАльбомToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem видаленняАльбомуToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem видаленняВиконавцяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addGenreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addAlbumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteAlbumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeExecutorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem списокВиконавцівToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem списокЖанрівToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem executorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem genresToolStripMenuItem;
     }
 }
 
