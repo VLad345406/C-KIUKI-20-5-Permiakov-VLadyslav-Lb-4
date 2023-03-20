@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace CSharp_Lb4
 {
     public partial class SongsLibrary : Form
     {
+        internal List<Artist> artists = new List<Artist>();
         private void UpdateFont()
         {
             //Change cell font
@@ -23,15 +25,18 @@ namespace CSharp_Lb4
 
         public SongsLibrary()
         {
-            Form formGenres = new AddGenres(1);
+            /*Form formGenres = new AddGenres(1);
             
-            formGenres.ShowDialog();
+            formGenres.ShowDialog();*/
 
             InitializeComponent();
-            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dataGridView1.Rows.Add(1, "test info", "test info", "test info", "test info");
         }
         
         private void genresToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,6 +49,29 @@ namespace CSharp_Lb4
             Form formGenres = new AddGenres();
             formGenres.ShowDialog();
             //List <String> getListGenres = formGenres.GetSetGenres;
+        }
+
+        private void addAlbumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Functions functions = new Functions();
+
+            AlbumAdd albumAdd = new AlbumAdd(artists);
+
+            albumAdd.ShowDialog();
+            
+            
+            int indexArtist = functions.findArtist(albumAdd.artistName, artists);
+            if (indexArtist == -1 && albumAdd.artistName != String.Empty)
+            {
+                Artist newArtist = new Artist();
+                newArtist.artistName = albumAdd.artistName;
+                newArtist.albums.Add(albumAdd.album);
+                artists.Add(newArtist);
+                indexArtist = artists.Count - 1;
+            }
+            else if (indexArtist != -1 && albumAdd.artistName != String.Empty)
+                artists[indexArtist].albums.Add(albumAdd.album);
+            functions.updateDataGridView(dataGridView1, artists);
         }
     }
 }

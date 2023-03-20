@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.artistName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.albumName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addGenreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeExecutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.спискиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.executorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.genresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumberInAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.songName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.artistName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.albumName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Num,
+            this.NumberInAlbum,
             this.songName,
             this.artistName,
             this.genre,
@@ -61,34 +64,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(776, 411);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // songName
-            // 
-            this.songName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.songName.HeaderText = "Назва треку";
-            this.songName.Name = "songName";
-            this.songName.Width = 88;
-            // 
-            // artistName
-            // 
-            this.artistName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.artistName.HeaderText = "Ім\'я виконавця";
-            this.artistName.Name = "artistName";
-            this.artistName.Width = 99;
-            // 
-            // genre
-            // 
-            this.genre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.genre.HeaderText = "Жанр";
-            this.genre.Name = "genre";
-            this.genre.Width = 61;
-            // 
-            // albumName
-            // 
-            this.albumName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.albumName.HeaderText = "Назва альбому";
-            this.albumName.Name = "albumName";
-            this.albumName.Width = 101;
             // 
             // menuStrip1
             // 
@@ -104,7 +79,6 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addGenreToolStripMenuItem,
             this.addAlbumToolStripMenuItem,
             this.deleteAlbumToolStripMenuItem,
             this.removeExecutorToolStripMenuItem});
@@ -112,18 +86,12 @@
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
-            // addGenreToolStripMenuItem
-            // 
-            this.addGenreToolStripMenuItem.Name = "addGenreToolStripMenuItem";
-            this.addGenreToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.addGenreToolStripMenuItem.Text = "Додати жанр";
-            this.addGenreToolStripMenuItem.Click += new System.EventHandler(this.addGenreToolStripMenuItem_Click);
-            // 
             // addAlbumToolStripMenuItem
             // 
             this.addAlbumToolStripMenuItem.Name = "addAlbumToolStripMenuItem";
             this.addAlbumToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.addAlbumToolStripMenuItem.Text = "Додати альбом";
+            this.addAlbumToolStripMenuItem.Click += new System.EventHandler(this.addAlbumToolStripMenuItem_Click);
             // 
             // deleteAlbumToolStripMenuItem
             // 
@@ -149,15 +117,67 @@
             // executorsToolStripMenuItem
             // 
             this.executorsToolStripMenuItem.Name = "executorsToolStripMenuItem";
-            this.executorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.executorsToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.executorsToolStripMenuItem.Text = "Список виконавців";
             // 
             // genresToolStripMenuItem
             // 
             this.genresToolStripMenuItem.Name = "genresToolStripMenuItem";
-            this.genresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.genresToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.genresToolStripMenuItem.Text = "Список жанрів";
             this.genresToolStripMenuItem.Click += new System.EventHandler(this.genresToolStripMenuItem_Click);
+            // 
+            // Num
+            // 
+            this.Num.HeaderText = "№";
+            this.Num.Name = "Num";
+            this.Num.ReadOnly = true;
+            this.Num.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Num.Width = 30;
+            // 
+            // NumberInAlbum
+            // 
+            this.NumberInAlbum.HeaderText = "№(альбом)";
+            this.NumberInAlbum.Name = "NumberInAlbum";
+            this.NumberInAlbum.ReadOnly = true;
+            this.NumberInAlbum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NumberInAlbum.Width = 70;
+            // 
+            // songName
+            // 
+            this.songName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.songName.HeaderText = "Назва треку";
+            this.songName.Name = "songName";
+            this.songName.ReadOnly = true;
+            this.songName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.songName.Width = 95;
+            // 
+            // artistName
+            // 
+            this.artistName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.artistName.HeaderText = "Ім\'я виконавця";
+            this.artistName.Name = "artistName";
+            this.artistName.ReadOnly = true;
+            this.artistName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.artistName.Width = 99;
+            // 
+            // genre
+            // 
+            this.genre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.genre.HeaderText = "Жанр";
+            this.genre.Name = "genre";
+            this.genre.ReadOnly = true;
+            this.genre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.genre.Width = 61;
+            // 
+            // albumName
+            // 
+            this.albumName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.albumName.HeaderText = "Назва альбому";
+            this.albumName.Name = "albumName";
+            this.albumName.ReadOnly = true;
+            this.albumName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.albumName.Width = 101;
             // 
             // SongsLibrary
             // 
@@ -181,19 +201,20 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn songName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn artistName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn albumName;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addGenreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAlbumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteAlbumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeExecutorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem спискиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem executorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem genresToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Num;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumberInAlbum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn songName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn artistName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn albumName;
     }
 }
 
