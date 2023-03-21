@@ -121,5 +121,43 @@ namespace CSharp_Lb4
                 functions.updateDataGridView(dataGridView1, artists);
             }
         }
+
+        private void comboBoxGenres_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxGenres.SelectedIndex == 0)
+                functions.updateDataGridView(dataGridView1, artists);
+            else
+            {
+                dataGridView1.Rows.Clear();
+                int count = 1;
+                for (int i = 0; i < artists.Count; i++)
+                {
+                    for (int j = 0; j < artists[i].albums.Count; j++)
+                    {
+                        bool findGenres = false;
+                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
+                        {
+                            if (artists[i].albums[j].genres[k] == comboBoxGenres.Text)
+                            {
+                                findGenres = true;
+                                break;
+                            }
+                        }
+                        if (findGenres)
+                        {
+                            String genres = String.Empty;
+                            for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
+                                genres += artists[i].albums[j].genres[k] + " ";
+
+                            for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
+                            {
+                                dataGridView1.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
