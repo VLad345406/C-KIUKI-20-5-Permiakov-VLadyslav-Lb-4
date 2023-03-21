@@ -80,7 +80,43 @@ namespace CSharp_Lb4
                 MessageBox.Show("В програмі відсутні записи!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                RemoveTrack removeTrack = new RemoveTrack(artists);
+                RemoveTrack removeTrack = new RemoveTrack(artists, "Remove Track", true, true);
+                removeTrack.ShowDialog();
+                functions.updateDataGridView(dataGridView1, artists);
+            }
+        }
+
+        private void editTrackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (artists.Count == 0)
+                MessageBox.Show("В програмі відсутні записи!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                RemoveTrack removeTrack = new RemoveTrack(artists, "Edit Track", true, true);
+                removeTrack.ShowDialog();
+                functions.updateDataGridView(dataGridView1, artists);
+            }
+        }
+
+        private void deleteAlbumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (artists.Count == 0)
+                MessageBox.Show("В програмі відсутні записи!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                RemoveTrack removeTrack = new RemoveTrack(artists, "Remove Album", true, false);
+                removeTrack.ShowDialog();
+                functions.updateDataGridView(dataGridView1, artists);
+            }
+        }
+
+        private void removeExecutorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (artists.Count == 0)
+                MessageBox.Show("В програмі відсутні записи!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                RemoveTrack removeTrack = new RemoveTrack(artists, "Remove Executor", false, false);
                 removeTrack.ShowDialog();
                 functions.updateDataGridView(dataGridView1, artists);
             }

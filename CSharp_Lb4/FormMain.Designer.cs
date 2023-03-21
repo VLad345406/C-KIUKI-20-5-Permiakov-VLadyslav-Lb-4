@@ -40,10 +40,11 @@
             this.addAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAlbumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeExecutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeTrackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.спискиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.executorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.genresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeTrackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editTrackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -135,7 +136,8 @@
             this.addAlbumToolStripMenuItem,
             this.deleteAlbumToolStripMenuItem,
             this.removeExecutorToolStripMenuItem,
-            this.removeTrackToolStripMenuItem});
+            this.removeTrackToolStripMenuItem,
+            this.editTrackToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -152,12 +154,21 @@
             this.deleteAlbumToolStripMenuItem.Name = "deleteAlbumToolStripMenuItem";
             this.deleteAlbumToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.deleteAlbumToolStripMenuItem.Text = "Видалення альбому";
+            this.deleteAlbumToolStripMenuItem.Click += new System.EventHandler(this.deleteAlbumToolStripMenuItem_Click);
             // 
             // removeExecutorToolStripMenuItem
             // 
             this.removeExecutorToolStripMenuItem.Name = "removeExecutorToolStripMenuItem";
             this.removeExecutorToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.removeExecutorToolStripMenuItem.Text = "Видалення виконавця";
+            this.removeExecutorToolStripMenuItem.Click += new System.EventHandler(this.removeExecutorToolStripMenuItem_Click);
+            // 
+            // removeTrackToolStripMenuItem
+            // 
+            this.removeTrackToolStripMenuItem.Name = "removeTrackToolStripMenuItem";
+            this.removeTrackToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.removeTrackToolStripMenuItem.Text = "Видалення треку";
+            this.removeTrackToolStripMenuItem.Click += new System.EventHandler(this.removeTrackToolStripMenuItem_Click);
             // 
             // спискиToolStripMenuItem
             // 
@@ -181,12 +192,12 @@
             this.genresToolStripMenuItem.Text = "Список жанрів";
             this.genresToolStripMenuItem.Click += new System.EventHandler(this.genresToolStripMenuItem_Click);
             // 
-            // removeTrackToolStripMenuItem
+            // editTrackToolStripMenuItem
             // 
-            this.removeTrackToolStripMenuItem.Name = "removeTrackToolStripMenuItem";
-            this.removeTrackToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.removeTrackToolStripMenuItem.Text = "Видалення треку";
-            this.removeTrackToolStripMenuItem.Click += new System.EventHandler(this.removeTrackToolStripMenuItem_Click);
+            this.editTrackToolStripMenuItem.Name = "editTrackToolStripMenuItem";
+            this.editTrackToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.editTrackToolStripMenuItem.Text = "Редагування треку";
+            this.editTrackToolStripMenuItem.Click += new System.EventHandler(this.editTrackToolStripMenuItem_Click);
             // 
             // SongsLibrary
             // 
@@ -225,6 +236,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn genre;
         private System.Windows.Forms.DataGridViewTextBoxColumn albumName;
         private System.Windows.Forms.ToolStripMenuItem removeTrackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editTrackToolStripMenuItem;
     }
 }
 

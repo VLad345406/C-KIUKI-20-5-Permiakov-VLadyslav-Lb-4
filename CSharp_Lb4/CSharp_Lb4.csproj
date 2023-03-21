@@ -54,6 +54,12 @@
       <DependentUpon>AlbumAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Class.cs" />
+    <Compile Include="EditTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTrack.Designer.cs">
+      <DependentUpon>EditTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="RemoveTrack.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AlbumAdd.resx">
       <DependentUpon>AlbumAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTrack.resx">
+      <DependentUpon>EditTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

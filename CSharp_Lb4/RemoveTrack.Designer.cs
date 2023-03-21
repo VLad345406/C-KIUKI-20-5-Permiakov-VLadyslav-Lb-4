@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.comboBoxAuthor = new System.Windows.Forms.ComboBox();
             this.comboBoxAlbumName = new System.Windows.Forms.ComboBox();
             this.comboBoxTrackName = new System.Windows.Forms.ComboBox();
@@ -55,14 +55,14 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Назва альбома";
             // 
-            // label5
+            // label3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(84, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Назва треку";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(84, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Назва треку";
             // 
             // comboBoxAuthor
             // 
@@ -112,7 +112,7 @@
             this.Controls.Add(this.comboBoxTrackName);
             this.Controls.Add(this.comboBoxAlbumName);
             this.Controls.Add(this.comboBoxAuthor);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
@@ -129,7 +129,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxAuthor;
         private System.Windows.Forms.ComboBox comboBoxAlbumName;
         private System.Windows.Forms.ComboBox comboBoxTrackName;
