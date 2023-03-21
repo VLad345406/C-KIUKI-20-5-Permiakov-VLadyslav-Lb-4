@@ -100,12 +100,6 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddGenres.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddGenres.Designer.cs">
-      <DependentUpon>AddGenres.cs</DependentUpon>
-    </Compile>
     <Compile Include="Functions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,9 +111,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddGenres.resx">
-      <DependentUpon>AddGenres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RemoveTrack.resx">
       <DependentUpon>RemoveTrack.cs</DependentUpon>
