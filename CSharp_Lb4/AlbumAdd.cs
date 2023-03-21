@@ -11,6 +11,8 @@ namespace CSharp_Lb4
         internal String artistName = string.Empty;
         bool artistSaved = false;
         List <Artist> artistList;
+
+        //initialize AlbumAdd form
         internal AlbumAdd(List<Artist> mainArtistList)
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace CSharp_Lb4
             functions.addInfoToComboBox(comboBoxAuthor, artistList);
         }
 
+        //add song to album
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             Functions functions = new Functions();
@@ -100,6 +103,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //exit to form AlbumAdd
         private void buttonDone_Click(object sender, EventArgs e)
         {
             if (comboBoxAuthor.Text == String.Empty || comboBoxAuthor.Enabled == true)

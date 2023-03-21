@@ -8,6 +8,7 @@ namespace CSharp_Lb4
         internal String trackName = String.Empty;
         internal DateTime trackLenth;
 
+        //initialize EditTrack form
         internal EditTrack(String trackName, DateTime trackLenth)
         {
             InitializeComponent();
@@ -15,6 +16,7 @@ namespace CSharp_Lb4
             timePickerTrackLenth.Value = trackLenth;
         }
 
+        //save edit information
         private void buttonDone_Click(object sender, EventArgs e)
         {
             trackName = textBoxTrackName.Text;

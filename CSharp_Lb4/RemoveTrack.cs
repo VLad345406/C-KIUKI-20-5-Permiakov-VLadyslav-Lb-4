@@ -8,6 +8,8 @@ namespace CSharp_Lb4
     {
         List<Artist> artists = new List<Artist>();
         Functions functions = new Functions();
+
+        //initialize RemoceTrack form
         internal RemoveTrack(List<Artist> mainArtists, String title, bool showAlbumName, bool showTrackName)
         {
             InitializeComponent();
@@ -23,6 +25,7 @@ namespace CSharp_Lb4
             functions.addInfoToComboBox(comboBoxAuthor, artists);
         }
 
+        //make action when in comboBoxAuthor change select item
         private void comboBoxAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (artists[comboBoxAuthor.SelectedIndex].albums.Count == 0 && comboBoxAlbumName.Visible == true)
@@ -38,6 +41,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //make action when in comboBoxAlbumName change select item
         private void comboBoxAlbumName_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxTrackName.Items.Clear();
@@ -46,6 +50,7 @@ namespace CSharp_Lb4
                 comboBoxTrackName.Items.Add(artists[comboBoxAuthor.SelectedIndex].albums[comboBoxAlbumName.SelectedIndex].tracks[i].trackName);
         }
 
+        //make action when buttonDone pressed
         private void buttonDone_Click(object sender, EventArgs e)
         {
             if (this.Text == "Remove Track" || this.Text == "Edit Track")

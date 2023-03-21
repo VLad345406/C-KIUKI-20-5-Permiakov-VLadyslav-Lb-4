@@ -8,6 +8,7 @@ namespace CSharp_Lb4
 {
     class Functions
     {
+        //check album name repeat in necessary artist list
         public bool checkAlbumRepeat(string albumName, string artist, List<Artist> artists)
         {
             bool result = false;
@@ -46,6 +47,7 @@ namespace CSharp_Lb4
             return result;
         }
 
+        //check track name repeat in necessary album list
         public bool checkTrackRepeat(string trackName, List<Track> listTracks)
         {
             bool result = false;
@@ -64,6 +66,7 @@ namespace CSharp_Lb4
             return result;
         }
 
+        //add artist name to combobox
         public void addInfoToComboBox(ComboBox comboBox, List<Artist> artists)
         {
             if (artists.Count > 0)
@@ -72,6 +75,7 @@ namespace CSharp_Lb4
                     comboBox.Items.Add(artists[i].artistName);
             }
         }
+
 
         public int findArtist(string artistName, List<Artist> artists)
         {
@@ -92,6 +96,7 @@ namespace CSharp_Lb4
             return result;
         }
 
+        //show all albums and tracks
         public void updateDataGridView(DataGridView dataGridView, List<Artist> artists)
         {
             dataGridView.Rows.Clear();
@@ -107,7 +112,7 @@ namespace CSharp_Lb4
                             genres += artists[i].albums[j].genres[k] + " ";
                         for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
                         {
-                            dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
+                            dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName, artists[i].albums[j].tracks[k].trackLenth.TimeOfDay);
                             count++;
                         }
                         dataGridView.Rows.Add();
@@ -116,6 +121,7 @@ namespace CSharp_Lb4
             }
         }
         
+        //find and show albums in necessary artist
         public void updateDataGridViewAuthors(DataGridView dataGridView, List<Artist> artists, String artist)
         {
             dataGridView.Rows.Clear();
@@ -131,7 +137,7 @@ namespace CSharp_Lb4
                             genres += artists[i].albums[j].genres[k] + " ";
                         for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
                         {
-                            dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
+                            dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName, artists[i].albums[j].tracks[k].trackLenth.TimeOfDay);
                             count++;
                         }
                         dataGridView.Rows.Add();
@@ -140,6 +146,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //find and show albums in necessary genre
         public void updateDataGridViewOfGenres(DataGridView dataGridView, List<Artist> artists, String genre)
         {
             if (genre == String.Empty)
@@ -169,7 +176,7 @@ namespace CSharp_Lb4
 
                             for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
                             {
-                                dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
+                                dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName, artists[i].albums[j].tracks[k].trackLenth.TimeOfDay);
                                 count++;
                             }
                             dataGridView.Rows.Add();
@@ -179,6 +186,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //update combobox item authors
         public void updateComboBoxAuthors(ComboBox comboBox, List<Artist> artists)
         {
             comboBox.Items.Clear();
@@ -187,17 +195,22 @@ namespace CSharp_Lb4
                 comboBox.Items.Add(artists[i].artistName);
         }
 
+        //save data to file using json
         public void saveData(List<Artist> artists)
         {
             string objectSerialized = JsonSerializer.Serialize(artists);
             File.WriteAllText("data.json", objectSerialized);
         }
 
+        //read data using json
         public List<Artist> readData()
         {
-            string objectJsonFile = File.ReadAllText("data.json");
-            List<Artist> artists = JsonSerializer.Deserialize<List<Artist>>(objectJsonFile);
-
+            List<Artist> artists = new List<Artist>();
+            if (File.Exists("data.json"))
+            {
+                string objectJsonFile = File.ReadAllText("data.json");
+                artists = JsonSerializer.Deserialize<List<Artist>>(objectJsonFile);
+            }
             return artists;
         }
     }

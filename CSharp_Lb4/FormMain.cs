@@ -9,44 +9,31 @@ namespace CSharp_Lb4
 {
     public partial class SongsLibrary : Form
     {
-        internal List<Artist> artists = new List<Artist>();
+        internal List<Artist> artists;
 
         Functions functions = new Functions();
 
-        private void UpdateFont()
-        {
-            //Change cell font
-            foreach (DataGridViewColumn c in dataGridView1.Columns)
-            {
-                c.DefaultCellStyle.Font = new Font("Times new roman", 50F, GraphicsUnit.Pixel);
-            }
-        }
-
+        //initialize main form
         public SongsLibrary()
         {
-            /*Form formGenres = new AddGenres(1);
-            
-            formGenres.ShowDialog();*/
-
             InitializeComponent();
-            //dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             artists = functions.readData();
             functions.updateDataGridView(dataGridView1, artists);
             functions.updateComboBoxAuthors(comboBoxAuthors, artists);
         }
 
+        //start AlbumAdd form
         private void addAlbumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
             AlbumAdd albumAdd = new AlbumAdd(artists);
 
             albumAdd.ShowDialog();
-            
             
             int indexArtist = functions.findArtist(albumAdd.artistName, artists);
             if (indexArtist == -1 && albumAdd.artistName != String.Empty)
@@ -63,6 +50,7 @@ namespace CSharp_Lb4
             functions.updateComboBoxAuthors(comboBoxAuthors, artists);
         }
 
+        //start RemoveTrack form special for remove track
         private void removeTrackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (artists.Count == 0)
@@ -75,6 +63,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //start RemoveTrack form special for edit track
         private void editTrackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (artists.Count == 0)
@@ -87,6 +76,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //start RemoveTrack form special for delete album
         private void deleteAlbumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (artists.Count == 0)
@@ -99,6 +89,7 @@ namespace CSharp_Lb4
             }
         }
 
+        //start RemoveTrack form special for remove executor
         private void removeExecutorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (artists.Count == 0)
@@ -112,12 +103,14 @@ namespace CSharp_Lb4
             functions.updateComboBoxAuthors(comboBoxAuthors, artists);
         }
 
+        //make action when in comboBoxGenres change select item
         private void comboBoxGenres_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxAuthors.SelectedIndex = 0;
             functions.updateDataGridViewOfGenres(dataGridView1, artists, comboBoxGenres.Text);
         }
-
+        
+        //make action when in comboBoxAuthors change select item
         private void comboBoxAuthors_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxGenres.SelectedIndex = 0;
@@ -127,6 +120,7 @@ namespace CSharp_Lb4
                 functions.updateDataGridViewAuthors(dataGridView1, artists, comboBoxAuthors.Text);
         }
 
+        //action, when user close program
         private void SongsLibrary_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Ви дійсно бажаєте завершити роботу?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
