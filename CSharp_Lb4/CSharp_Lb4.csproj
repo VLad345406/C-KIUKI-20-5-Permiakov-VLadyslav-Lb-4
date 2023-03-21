@@ -54,6 +54,12 @@
       <DependentUpon>AlbumAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="Class.cs" />
+    <Compile Include="RemoveTrack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RemoveTrack.Designer.cs">
+      <DependentUpon>RemoveTrack.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddGenres.resx">
       <DependentUpon>AddGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemoveTrack.resx">
+      <DependentUpon>RemoveTrack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

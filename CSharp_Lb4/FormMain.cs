@@ -14,6 +14,9 @@ namespace CSharp_Lb4
     public partial class SongsLibrary : Form
     {
         internal List<Artist> artists = new List<Artist>();
+
+        Functions functions = new Functions();
+
         private void UpdateFont()
         {
             //Change cell font
@@ -35,8 +38,6 @@ namespace CSharp_Lb4
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            dataGridView1.Rows.Add(1, "test info", "test info", "test info", "test info");
         }
         
         private void genresToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,8 +54,7 @@ namespace CSharp_Lb4
 
         private void addAlbumToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Functions functions = new Functions();
-
+            
             AlbumAdd albumAdd = new AlbumAdd(artists);
 
             albumAdd.ShowDialog();
@@ -72,6 +72,18 @@ namespace CSharp_Lb4
             else if (indexArtist != -1 && albumAdd.artistName != String.Empty)
                 artists[indexArtist].albums.Add(albumAdd.album);
             functions.updateDataGridView(dataGridView1, artists);
+        }
+
+        private void removeTrackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (artists.Count == 0)
+                MessageBox.Show("В програмі відсутні записи!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                RemoveTrack removeTrack = new RemoveTrack(artists);
+                removeTrack.ShowDialog();
+                functions.updateDataGridView(dataGridView1, artists);
+            }
         }
     }
 }

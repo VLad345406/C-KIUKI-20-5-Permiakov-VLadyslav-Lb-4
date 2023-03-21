@@ -92,6 +92,7 @@ namespace CSharp_Lb4
 
             return result;
         }
+
         public void updateDataGridView(DataGridView dataGridView, List<Artist> artists)
         {
             dataGridView.Rows.Clear();

@@ -34,7 +34,7 @@ namespace CSharp_Lb4
                 MessageBox.Show("Введіть ім'я автора!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (textBoxAlbumName.Text == String.Empty)
                 MessageBox.Show("Введіть назву альбома!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (functions.checkAlbumRepeat(textBoxAlbumName.Text, artistName, artistList))
+            else if (functions.checkAlbumRepeat(textBoxAlbumName.Text, comboBoxAuthor.Text, artistList))
                 MessageBox.Show("В цього виконавця вже існує алюбом с такою назвою!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (numericUpDownCountTracks.Value == 0)
                 MessageBox.Show("Кількість треків не може бути нульовою!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -107,13 +107,16 @@ namespace CSharp_Lb4
 
         private void buttonDone_Click(object sender, EventArgs e)
         {
-            if (comboBoxAuthor.Text == String.Empty && comboBoxAuthor.Enabled == true)
+            if (comboBoxAuthor.Text == String.Empty || comboBoxAuthor.Enabled == true)
                 this.Close();
             else if (album.tracks.Count != album.countTracks)
             {
-                DialogResult mb = MessageBox.Show("Ви точно бажаете зберегти не повністю заповнений альбом?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult mb = MessageBox.Show("Ви точно бажаете зберегти не повністю заповнений альбом?", "Question!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (mb == DialogResult.Yes)
+                {
+                    album.countTracks = album.tracks.Count;
                     this.Close();
+                }
             }
             else
                 this.Close();
