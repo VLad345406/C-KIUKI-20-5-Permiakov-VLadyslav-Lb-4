@@ -91,6 +91,10 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxTrackName);
             this.Controls.Add(this.label5);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(453, 224);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(453, 224);
             this.Name = "EditTrack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit Track";

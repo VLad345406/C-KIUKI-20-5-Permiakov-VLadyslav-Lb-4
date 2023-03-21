@@ -44,6 +44,8 @@
             this.editTrackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxGenres = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxAuthors = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +63,9 @@
             this.artistName,
             this.genre,
             this.albumName});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 54);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 81);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 384);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 357);
             this.dataGridView1.TabIndex = 0;
             // 
             // Num
@@ -179,7 +181,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(201, 30);
+            this.label1.Location = new System.Drawing.Point(201, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 13);
             this.label1.TabIndex = 2;
@@ -203,17 +205,37 @@
             "Репкор",
             "Діско",
             "Поп"});
-            this.comboBoxGenres.Location = new System.Drawing.Point(340, 27);
+            this.comboBoxGenres.Location = new System.Drawing.Point(340, 54);
             this.comboBoxGenres.Name = "comboBoxGenres";
             this.comboBoxGenres.Size = new System.Drawing.Size(243, 21);
             this.comboBoxGenres.TabIndex = 3;
             this.comboBoxGenres.SelectedIndexChanged += new System.EventHandler(this.comboBoxGenres_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(204, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(130, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Сортування за автором:";
+            // 
+            // comboBoxAuthors
+            // 
+            this.comboBoxAuthors.FormattingEnabled = true;
+            this.comboBoxAuthors.Location = new System.Drawing.Point(340, 27);
+            this.comboBoxAuthors.Name = "comboBoxAuthors";
+            this.comboBoxAuthors.Size = new System.Drawing.Size(243, 21);
+            this.comboBoxAuthors.TabIndex = 5;
+            this.comboBoxAuthors.SelectedIndexChanged += new System.EventHandler(this.comboBoxAuthors_SelectedIndexChanged);
             // 
             // SongsLibrary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxAuthors);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxGenres);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
@@ -222,6 +244,7 @@
             this.Name = "SongsLibrary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Аудіо-бібліотека";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SongsLibrary_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -248,6 +271,8 @@
         private System.Windows.Forms.ToolStripMenuItem editTrackToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxGenres;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxAuthors;
     }
 }
 

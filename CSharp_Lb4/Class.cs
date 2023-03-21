@@ -5,20 +5,20 @@ namespace CSharp_Lb4
 {
     class Track
     {
-        public string trackName;
-        public DateTime trackLenth;
+        public string trackName { get; set; } = String.Empty;
+        public DateTime trackLenth { get; set; } = DateTime.Now;
     }
     class Album
     {
-        public string albumName;
-        public int year;
-        public int countTracks;
-        public List<String> genres = new List<String>();
-        public List<Track> tracks = new List<Track>();
+        public string albumName { get; set; } = String.Empty;
+        public int year { get; set; } = 0;
+        public int countTracks { get; set; } = 0;
+        public List<String> genres { get; set; } = new List<String>();
+        public List<Track> tracks { get; set; } = new List<Track>();
     }
     class Artist
     {
-        public string artistName;
-        public List<Album> albums = new List<Album>();
+        public string artistName { get; set; } = String.Empty;
+        public List<Album> albums { get; set; } = new List<Album>();
     }
 }

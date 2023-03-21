@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 using System.Windows.Forms;
 
 namespace CSharp_Lb4
@@ -111,9 +110,95 @@ namespace CSharp_Lb4
                             dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
                             count++;
                         }
+                        dataGridView.Rows.Add();
                     }
                 }
             }
+        }
+        
+        public void updateDataGridViewAuthors(DataGridView dataGridView, List<Artist> artists, String artist)
+        {
+            dataGridView.Rows.Clear();
+            int count = 1;
+            for (int i = 0; i < artists.Count; i++)
+            {
+                if (artists[i].artistName == artist)
+                {
+                    for (int j = 0; j < artists[i].albums.Count; j++)
+                    {
+                        String genres = String.Empty;
+                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
+                            genres += artists[i].albums[j].genres[k] + " ";
+                        for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
+                        {
+                            dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
+                            count++;
+                        }
+                        dataGridView.Rows.Add();
+                    }
+                }
+            }
+        }
+
+        public void updateDataGridViewOfGenres(DataGridView dataGridView, List<Artist> artists, String genre)
+        {
+            if (genre == String.Empty)
+                updateDataGridView(dataGridView, artists);
+            else
+            {
+                dataGridView.Rows.Clear();
+                int count = 1;
+                for (int i = 0; i < artists.Count; i++)
+                {
+                    for (int j = 0; j < artists[i].albums.Count; j++)
+                    {
+                        bool findGenres = false;
+                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
+                        {
+                            if (artists[i].albums[j].genres[k] == genre)
+                            {
+                                findGenres = true;
+                                break;
+                            }
+                        }
+                        if (findGenres)
+                        {
+                            String genres = String.Empty;
+                            for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
+                                genres += artists[i].albums[j].genres[k] + " ";
+
+                            for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
+                            {
+                                dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
+                                count++;
+                            }
+                            dataGridView.Rows.Add();
+                        }
+                    }
+                }
+            }
+        }
+
+        public void updateComboBoxAuthors(ComboBox comboBox, List<Artist> artists)
+        {
+            comboBox.Items.Clear();
+            comboBox.Items.Add(String.Empty);
+            for (int i = 0; i < artists.Count; i++)
+                comboBox.Items.Add(artists[i].artistName);
+        }
+
+        public void saveData(List<Artist> artists)
+        {
+            string objectSerialized = JsonSerializer.Serialize(artists);
+            File.WriteAllText("data.json", objectSerialized);
+        }
+
+        public List<Artist> readData()
+        {
+            string objectJsonFile = File.ReadAllText("data.json");
+            List<Artist> artists = JsonSerializer.Deserialize<List<Artist>>(objectJsonFile);
+
+            return artists;
         }
     }
 }

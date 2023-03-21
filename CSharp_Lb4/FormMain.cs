@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace CSharp_Lb4
 {
@@ -38,18 +34,10 @@ namespace CSharp_Lb4
             dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
-        
-        private void genresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
 
-        private void addGenreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form formGenres = new AddGenres();
-            formGenres.ShowDialog();
-            //List <String> getListGenres = formGenres.GetSetGenres;
+            artists = functions.readData();
+            functions.updateDataGridView(dataGridView1, artists);
+            functions.updateComboBoxAuthors(comboBoxAuthors, artists);
         }
 
         private void addAlbumToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,6 +60,7 @@ namespace CSharp_Lb4
             else if (indexArtist != -1 && albumAdd.artistName != String.Empty)
                 artists[indexArtist].albums.Add(albumAdd.album);
             functions.updateDataGridView(dataGridView1, artists);
+            functions.updateComboBoxAuthors(comboBoxAuthors, artists);
         }
 
         private void removeTrackToolStripMenuItem_Click(object sender, EventArgs e)
@@ -120,44 +109,34 @@ namespace CSharp_Lb4
                 removeTrack.ShowDialog();
                 functions.updateDataGridView(dataGridView1, artists);
             }
+            functions.updateComboBoxAuthors(comboBoxAuthors, artists);
         }
 
         private void comboBoxGenres_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxGenres.SelectedIndex == 0)
+            comboBoxAuthors.SelectedIndex = 0;
+            functions.updateDataGridViewOfGenres(dataGridView1, artists, comboBoxGenres.Text);
+        }
+
+        private void comboBoxAuthors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxGenres.SelectedIndex = 0;
+            if (comboBoxAuthors.SelectedIndex == 0)
                 functions.updateDataGridView(dataGridView1, artists);
             else
-            {
-                dataGridView1.Rows.Clear();
-                int count = 1;
-                for (int i = 0; i < artists.Count; i++)
-                {
-                    for (int j = 0; j < artists[i].albums.Count; j++)
-                    {
-                        bool findGenres = false;
-                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
-                        {
-                            if (artists[i].albums[j].genres[k] == comboBoxGenres.Text)
-                            {
-                                findGenres = true;
-                                break;
-                            }
-                        }
-                        if (findGenres)
-                        {
-                            String genres = String.Empty;
-                            for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
-                                genres += artists[i].albums[j].genres[k] + " ";
+                functions.updateDataGridViewAuthors(dataGridView1, artists, comboBoxAuthors.Text);
+        }
 
-                            for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
-                            {
-                                dataGridView1.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName);
-                                count++;
-                            }
-                        }
-                    }
-                }
+        private void SongsLibrary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Ви дійсно бажаєте завершити роботу?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialog == DialogResult.Yes)
+            {
+                functions.saveData(artists);
+                e.Cancel = false;
             }
+            else
+                e.Cancel = true;
         }
     }
 }
