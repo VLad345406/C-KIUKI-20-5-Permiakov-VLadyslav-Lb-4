@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Windows.Forms;
 
@@ -12,35 +13,15 @@ namespace CSharp_Lb4
         public bool checkAlbumRepeat(string albumName, string artist, List<Artist> artists)
         {
             bool result = false;
-
+            
             if (artists.Count > 0)
             {
-                bool findArtist = false;
-                int artistIndex = 0;
-
-                for (int i = 0; i < artists.Count; i++)
+                Artist findArtist = artists.Find(x => x.artistName.Equals(artist));
+                if (findArtist != null)
                 {
-                    if (artists[i].artistName == artist)
-                    {
-                        findArtist = true;
-                        artistIndex = i;
-                        break;
-                    }
-                }
-
-                if (findArtist)
-                {
-                    if (artists[artistIndex].albums.Count > 0)
-                    {
-                        for (int i = 0; i < artists[artistIndex].albums.Count; i++)
-                        {
-                            if (artists[artistIndex].albums[i].albumName == albumName)
-                            {
-                                result = true;
-                                break;
-                            }
-                        }
-                    }
+                    Album findAlbum = findArtist.albums.Find(x => x.albumName.Equals(albumName));
+                    if (findAlbum != null)
+                        result = true;
                 }
             }
 
@@ -54,14 +35,9 @@ namespace CSharp_Lb4
 
             if (listTracks.Count > 0)
             {
-                for (int i = 0; i < listTracks.Count; i++)
-                {
-                    if (listTracks[i].trackName == trackName)
-                    {
-                        result = true;
-                        break;
-                    }
-                }
+                Track findTrack = listTracks.Find(x => x.Equals(trackName));
+                if (findTrack != null)
+                    result = true;
             }
             return result;
         }
@@ -76,21 +52,16 @@ namespace CSharp_Lb4
             }
         }
 
-
+        //find artist in array
         public int findArtist(string artistName, List<Artist> artists)
         {
             int result = -1;
 
             if (artists.Count > 0)
             {
-                for (int i = 0; i < artists.Count; i++)
-                {
-                    if (artists[i].artistName == artistName)
-                    {
-                        result = i;
-                        break;
-                    }
-                }
+                Artist findArtist = artists.Find(x => x.Equals(artistName));
+                if (findArtist != null)
+                    result = artists.FindIndex(x => x.Equals(artistName));
             }
 
             return result;
@@ -107,9 +78,8 @@ namespace CSharp_Lb4
                 {
                     for (int j = 0; j < artists[i].albums.Count; j++)
                     {
-                        String genres = String.Empty;
-                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
-                            genres += artists[i].albums[j].genres[k] + " ";
+                        String genres = artists[i].albums[j].genres.Aggregate((current, next) => current + " " + next);
+
                         for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
                         {
                             dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName, artists[i].albums[j].tracks[k].trackLenth.TimeOfDay);
@@ -132,9 +102,8 @@ namespace CSharp_Lb4
                 {
                     for (int j = 0; j < artists[i].albums.Count; j++)
                     {
-                        String genres = String.Empty;
-                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
-                            genres += artists[i].albums[j].genres[k] + " ";
+                        String genres = artists[i].albums[j].genres.Aggregate((current, next) => current + " " + next);
+
                         for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
                         {
                             dataGridView.Rows.Add(count, k + 1, artists[i].albums[j].tracks[k].trackName, artists[i].artistName, genres, artists[i].albums[j].albumName, artists[i].albums[j].tracks[k].trackLenth.TimeOfDay);
@@ -159,20 +128,11 @@ namespace CSharp_Lb4
                 {
                     for (int j = 0; j < artists[i].albums.Count; j++)
                     {
-                        bool findGenres = false;
-                        for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
+                        String findGenres = artists[i].albums[j].genres.Find(g => g.Equals(genre));
+
+                        if (findGenres != null)
                         {
-                            if (artists[i].albums[j].genres[k] == genre)
-                            {
-                                findGenres = true;
-                                break;
-                            }
-                        }
-                        if (findGenres)
-                        {
-                            String genres = String.Empty;
-                            for (int k = 0; k < artists[i].albums[j].genres.Count; k++)
-                                genres += artists[i].albums[j].genres[k] + " ";
+                            String genres = artists[i].albums[j].genres.Aggregate((current, next) => current + " " + next);
 
                             for (int k = 0; k < artists[i].albums[j].tracks.Count; k++)
                             {
